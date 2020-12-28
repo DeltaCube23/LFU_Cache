@@ -34,7 +34,7 @@ void LFU::Set(int value) {
 			//adjust new node pointers
 			newnode->SetPrevious(this->head);
 			newnode->SetNext(this->head->GetNext());
-			//insert new node
+			//update new node
 			newnode->InsertNode(value);
 			//adjust neighbour pointers
 			this->head->SetNext(newnode);
@@ -56,7 +56,7 @@ void LFU::Retrieve(int value) {
 	if(FrequencyNodePresent(freq)) {
 		FrequencyList *freqlist = this->CountFrequencyListMap.find(freq)->second;
 		
-		freqlist->InsertNode(value);
+		freqlist->LookUpNode(value, freq);
 		this->NodeFrequencyListMap[value] = freqlist;
 	} else {
 		FrequencyList *newnode = new FrequencyList(freq);
@@ -64,8 +64,8 @@ void LFU::Retrieve(int value) {
 		//adjust new node pointers
 		newnode->SetPrevious(currentlist);
 		newnode->SetNext(currentlist->GetNext());
-		//insert new node
-		newnode->InsertNode(value);
+		//update new node
+		newnode->LookUpNode(value, freq);
 		//adjust neighbour pointers
 		currentlist->SetNext(newnode);
 		if(newnode->GetNext() != NULL)

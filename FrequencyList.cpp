@@ -29,9 +29,8 @@ void FrequencyList::InsertNode(int node) {
 	this->nodelist[node] = 1; // being called for the first time
 }
 
-void FrequencyList::LookUpNode(int node) {
-	if( IsPresent(node) ) // check if node exists
-	this->nodelist[node] += 1;
+void FrequencyList::LookUpNode(int node, int freq) {
+	this->nodelist[node] = freq;
 }
 
 void FrequencyList::DeleteNode(int node) {
@@ -42,9 +41,8 @@ void FrequencyList::DeleteNode(int node) {
 void FrequencyList::PrintNodeList() {
 	for(unordered_map<int, int>::const_iterator itr = this->nodelist.begin(); itr != this->nodelist.end(); itr++)
 	{
-		cout<<itr->first<<" "; //Print full list
+		cout<<itr->first<<" "<<itr->second<<"\n"; //Print full list
 	}
-	cout<<"\n";
 }
 
 int FrequencyList::GetNode() {

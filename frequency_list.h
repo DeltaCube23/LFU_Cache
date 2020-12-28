@@ -17,7 +17,7 @@ class FrequencyList {
 		FrequencyList(int count, FrequencyList *prev, FrequencyList *next);
 		~FrequencyList();
 		void InsertNode(int node);
-		void LookUpNode(int node);
+		void LookUpNode(int node, int freq);
 		void DeleteNode(int node);
 		bool IsPresent(int node);
 		void PrintNodeList();
